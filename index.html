@@ -29,11 +29,12 @@
       font-weight: bold;
     }
 
-    #themeToggle {
+    #themeToggle, #mapToggle {
       font-size: 22px;
       cursor: pointer;
       padding: 5px 10px;
       user-select: none;
+      margin-left: 10px;
     }
 
     #content {
@@ -95,6 +96,7 @@
       background: #fafafa;
     }
 
+    /* ⭐ Tryb ciemny */
     body.dark {
       background: #1e1e1e;
       color: #e6e6e6;
@@ -122,6 +124,22 @@
       background: #2a2a2a;
       border-color: #555;
     }
+
+    /* ⭐ Linki w trybie ciemnym */
+    body.dark a {
+      color: #7ab8ff;
+      text-decoration: none;
+    }
+
+    body.dark a:hover {
+      color: #a8d4ff;
+      text-decoration: underline;
+    }
+
+    body.dark #mapToggle {
+      color: #cce3ff;
+    }
+
   </style>
 </head>
 
@@ -129,7 +147,10 @@
 
 <div id="topbar">
   <div id="clock"></div>
-  <div id="themeToggle" title="Zmień tryb">🌞</div>
+  <div style="display:flex;align-items:center;">
+    <div id="themeToggle" title="Zmień tryb">🌞</div>
+    <div id="mapToggle" title="Pokaż/Ukryj mapę">🗺️</div>
+  </div>
 </div>
 
 <div id="content">
@@ -159,30 +180,21 @@
 </div>
 
 <div id="footer">
-  2026 – SP1RAC
+ <img alt="Static Badge" src="https://img.shields.io/badge/2026_SP1RAC_v.1.1-green?logo=unlicense">
 </div>
 
 <script>
-  // ⭐ Krótki zegar po polsku (UTC)
+  // ⭐ Zegar UTC
   function updateClock() {
     const now = new Date();
-
-    const date = now.toLocaleDateString("pl-PL", {
-      timeZone: "UTC"
-    });
-
-    const time = now.toLocaleTimeString("pl-PL", {
-      timeZone: "UTC",
-      hour12: false
-    });
-
+    const date = now.toLocaleDateString("pl-PL", { timeZone: "UTC" });
+    const time = now.toLocaleTimeString("pl-PL", { timeZone: "UTC", hour12: false });
     document.getElementById("clock").textContent = `${date} ${time} UTC`;
   }
-
   setInterval(updateClock, 1000);
   updateClock();
 
-  // 🔘 Tryb jasny / ciemny
+  // ⭐ Tryb jasny / ciemny
   const themeToggle = document.getElementById("themeToggle");
 
   if (localStorage.getItem("theme") === "dark") {
@@ -192,7 +204,6 @@
 
   themeToggle.onclick = () => {
     document.body.classList.toggle("dark");
-
     if (document.body.classList.contains("dark")) {
       themeToggle.textContent = "🌙";
       localStorage.setItem("theme", "dark");
@@ -202,11 +213,34 @@
     }
   };
 
+  // ⭐ Ukrywanie / pokazywanie mapy
+  const mapToggle = document.getElementById("mapToggle");
+  const mapBox = document.getElementById("networkMap");
+
+  if (localStorage.getItem("mapVisible") === "false") {
+    mapBox.style.display = "none";
+    mapToggle.textContent = "🗺️❌";
+  }
+
+  mapToggle.onclick = () => {
+    if (mapBox.style.display === "none") {
+      mapBox.style.display = "block";
+      mapToggle.textContent = "🗺️";
+      localStorage.setItem("mapVisible", "true");
+    } else {
+      mapBox.style.display = "none";
+      mapToggle.textContent = "🗺️❌";
+      localStorage.setItem("mapVisible", "false");
+    }
+  };
+
+  // ⭐ Odświeżanie mapy
   function refreshMap() {
     const img = document.getElementById("mapImage");
     img.src = "https://stats.allstarlink.org/stats/66881/networkMap?ts=" + Date.now();
   }
 
+  // ⭐ Pobieranie danych z API AllStarLink
   const nodes = [
     { url: "https://stats.allstarlink.org/api/stats/66881", id: 66881 },
     { url: "https://stats.allstarlink.org/api/stats/65318", id: 65318 }
