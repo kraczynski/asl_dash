@@ -140,6 +140,16 @@
       color: #cce3ff;
     }
 
+    /* ⭐ Odwrócenie kolorów ikony APRS w trybie ciemnym */
+    body.dark .aprs-icon {
+      filter: invert(1);
+    }
+
+    /* ⭐ Odwrócenie kolorów mapy w trybie ciemnym */
+    body.dark #mapImage {
+      filter: invert(1);
+    }
+
   </style>
 </head>
 
@@ -180,7 +190,7 @@
 </div>
 
 <div id="footer">
- <img alt="Static Badge" src="https://img.shields.io/badge/2026_SP1RAC_v.1.1-green?logo=unlicense">
+ <img alt="Static Badge" src="https://img.shields.io/badge/2026_SP1RAC_v.1.2-green?logo=unlicense">
 </div>
 
 <script>
