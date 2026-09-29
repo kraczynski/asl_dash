@@ -150,7 +150,6 @@
       filter: invert(1);
     }
 
-
     /* Baza kontaktów CSV */
     #contactsBar {
       display: flex;
@@ -170,7 +169,9 @@
       font-size: 14px;
     }
 
-    #contactsBar button:hover { background: #eee; }
+    #contactsBar button:hover {
+      background: #eee;
+    }
 
     #contactsBar span {
       font-size: 13px;
@@ -183,10 +184,14 @@
       border-color: #555;
     }
 
-    body.dark #contactsBar button:hover { background: #3a3a3a; }
-    body.dark #contactsBar span { color: #aaa; }
+    body.dark #contactsBar button:hover {
+      background: #3a3a3a;
+    }
 
-  
+    body.dark #contactsBar span {
+      color: #aaa;
+    }
+
     /* Przycisk pobierania bazy kontaktów */
     .download-contacts-btn {
       display: inline-flex;
@@ -215,14 +220,14 @@
     body.dark .download-contacts-btn:hover {
       background: #3a3a3a;
     }
-
-</style>
+  </style>
 </head>
 
 <body>
 
 <div id="topbar">
   <div id="clock"></div>
+
   <div style="display:flex;align-items:center;">
     <div id="themeToggle" title="Zmień tryb">🌞</div>
     <div id="mapToggle" title="Pokaż/Ukryj mapę">🗺️</div>
@@ -231,65 +236,107 @@
 
 <div id="content">
 
-<h2>Zalogowani użytkownicy – Node 622155, 65318, 66881</h2>
+  <h2>Zalogowani użytkownicy – Node 622155, 65318, 66881</h2>
 
-<div id="contactsBar">
-  <button id="ximpc">Wgraj listę kontaktów (CSV)</button>
-  <a href="https://radioid.net/database/dumps"
-   target="_blank"
-   rel="noopener"
-   title="Pobierz plik user.csv"
-   class="download-contacts-btn">
-  <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"
-          fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  Pobierz user.csv
-</a>
-  <input type="file" id="impc" accept=".csv,.txt" hidden>
-  <button id="wipec">Usuń bazę kontaktów</button>
-  <span id="cinfo">Brak wczytanej listy kontaktów.</span>
-</div>
+  <div id="contactsBar">
 
+    <button id="ximpc">
+      Wgraj listę kontaktów (CSV)
+    </button>
 
-<table id="users">
-  <thead>
-    <tr>
-      <th>Znak</th>
-      <th>Imię</th>
-      <th>Node</th>
-      <th>Lokalizacja</th>
-      <th>Węzeł</th>
-      <th>APRS</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+    <a href="https://radioid.net/database/dumps"
+       target="_blank"
+       rel="noopener"
+       title="Pobierz plik user.csv"
+       class="download-contacts-btn">
 
-<div id="networkMap">
-  <h3>Mapa połączeń AllStarLink</h3>
-  <img id="mapImage"
-       src="https://stats.allstarlink.org/stats/66881/networkMap"
-       alt="Network Map 66881">
-</div>
+      <svg width="18"
+           height="18"
+           viewBox="0 0 24 24"
+           aria-hidden="true">
+
+        <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+      </svg>
+
+      Pobierz user.csv
+    </a>
+
+    <input type="file"
+           id="impc"
+           accept=".csv,.txt"
+           hidden>
+
+    <button id="wipec">
+      Usuń bazę kontaktów
+    </button>
+
+    <span id="cinfo">
+      Brak wczytanej listy kontaktów.
+    </span>
+
+  </div>
+
+  <table id="users">
+
+    <thead>
+      <tr>
+        <th>Znak</th>
+        <th>Imię</th>
+        <th>Node</th>
+        <th>Lokalizacja</th>
+        <th>Węzeł</th>
+        <th>APRS</th>
+      </tr>
+    </thead>
+
+    <tbody></tbody>
+
+  </table>
+
+  <div id="networkMap">
+
+    <h3>Mapa połączeń AllStarLink</h3>
+
+    <img id="mapImage"
+         src="https://stats.allstarlink.org/stats/66881/networkMap"
+         alt="Network Map 66881">
+
+  </div>
 
 </div>
 
 <div id="footer">
- <img alt="Static Badge" src="https://img.shields.io/badge/2026_SP1RAC_&_SQ5RJA_v.2-green?logo=unlicense">
+  <img alt="Static Badge"
+       src="https://img.shields.io/badge/2026_SP1RAC_&_SQ5RJA_v.2.1-green?logo=unlicense">
 </div>
 
 <script>
+
   // ⭐ Zegar UTC
   function updateClock() {
     const now = new Date();
-    const date = now.toLocaleDateString("pl-PL", { timeZone: "UTC" });
-    const time = now.toLocaleTimeString("pl-PL", { timeZone: "UTC", hour12: false });
-    document.getElementById("clock").textContent = `${date} ${time} UTC`;
+
+    const date = now.toLocaleDateString("pl-PL", {
+      timeZone: "UTC"
+    });
+
+    const time = now.toLocaleTimeString("pl-PL", {
+      timeZone: "UTC",
+      hour12: false
+    });
+
+    document.getElementById("clock").textContent =
+      `${date} ${time} UTC`;
   }
+
   setInterval(updateClock, 1000);
   updateClock();
+
 
   // ⭐ Tryb jasny / ciemny
   const themeToggle = document.getElementById("themeToggle");
@@ -300,7 +347,9 @@
   }
 
   themeToggle.onclick = () => {
+
     document.body.classList.toggle("dark");
+
     if (document.body.classList.contains("dark")) {
       themeToggle.textContent = "🌙";
       localStorage.setItem("theme", "dark");
@@ -308,7 +357,9 @@
       themeToggle.textContent = "🌞";
       localStorage.setItem("theme", "light");
     }
+
   };
+
 
   // ⭐ Ukrywanie / pokazywanie mapy
   const mapToggle = document.getElementById("mapToggle");
@@ -320,321 +371,799 @@
   }
 
   mapToggle.onclick = () => {
+
     if (mapBox.style.display === "none") {
+
       mapBox.style.display = "block";
       mapToggle.textContent = "🗺️";
       localStorage.setItem("mapVisible", "true");
+
     } else {
+
       mapBox.style.display = "none";
       mapToggle.textContent = "🗺️❌";
       localStorage.setItem("mapVisible", "false");
+
     }
+
   };
+
 
   // ⭐ Odświeżanie mapy
   function refreshMap() {
+
     const img = document.getElementById("mapImage");
-    img.src = "https://stats.allstarlink.org/stats/66881/networkMap?ts=" + Date.now();
+
+    img.src =
+      "https://stats.allstarlink.org/stats/66881/networkMap?ts=" +
+      Date.now();
+
   }
 
-  // ⭐ Baza kontaktów (znak → imię), z pliku CSV
+
+  // ⭐ Baza kontaktów CSV (SQ5RJA)
+  // znak → imię
   let contacts = new Map();
 
+
   function idbOpen() {
+
     return new Promise((res, rej) => {
+
       const rq = indexedDB.open("aslDashboardContacts", 1);
+
       rq.onupgradeneeded = () => {
-        if (!rq.result.objectStoreNames.contains("c")) rq.result.createObjectStore("c", { keyPath: "k" });
+
+        if (!rq.result.objectStoreNames.contains("c")) {
+
+          rq.result.createObjectStore("c", {
+            keyPath: "k"
+          });
+
+        }
+
       };
+
       rq.onsuccess = () => res(rq.result);
       rq.onerror = () => rej(rq.error);
+
     });
+
   }
+
 
   function idbSaveAll(map) {
-    return idbOpen().then(db => new Promise((res, rej) => {
-      const tx = db.transaction("c", "readwrite"), st = tx.objectStore("c");
-      st.clear();
-      map.forEach((v, k) => st.put({ k, v }));
-      tx.oncomplete = res;
-      tx.onerror = () => rej(tx.error);
-    }));
+
+    return idbOpen().then(db =>
+
+      new Promise((res, rej) => {
+
+        const tx =
+          db.transaction("c", "readwrite");
+
+        const st =
+          tx.objectStore("c");
+
+        st.clear();
+
+        map.forEach((v, k) => {
+          st.put({
+            k,
+            v
+          });
+        });
+
+        tx.oncomplete = res;
+        tx.onerror = () => rej(tx.error);
+
+      })
+
+    );
+
   }
+
 
   function idbClear() {
-    return idbOpen().then(db => new Promise((res, rej) => {
-      const tx = db.transaction("c", "readwrite");
-      tx.objectStore("c").clear();
-      tx.oncomplete = res;
-      tx.onerror = () => rej(tx.error);
-    }));
+
+    return idbOpen().then(db =>
+
+      new Promise((res, rej) => {
+
+        const tx =
+          db.transaction("c", "readwrite");
+
+        tx.objectStore("c").clear();
+
+        tx.oncomplete = res;
+        tx.onerror = () => rej(tx.error);
+
+      })
+
+    );
+
   }
+
 
   function idbLoadAll() {
-    return idbOpen().then(db => new Promise((res, rej) => {
-      const tx = db.transaction("c", "readonly"), rq = tx.objectStore("c").getAll();
-      rq.onsuccess = () => {
-        const m = new Map();
-        rq.result.forEach(r => m.set(r.k, r.v));
-        res(m);
-      };
-      rq.onerror = () => rej(rq.error);
-    })).catch(() => new Map());
+
+    return idbOpen().then(db =>
+
+      new Promise((res, rej) => {
+
+        const tx =
+          db.transaction("c", "readonly");
+
+        const rq =
+          tx.objectStore("c").getAll();
+
+        rq.onsuccess = () => {
+
+          const m = new Map();
+
+          rq.result.forEach(r => {
+            m.set(r.k, r.v);
+          });
+
+          res(m);
+
+        };
+
+        rq.onerror = () => rej(rq.error);
+
+      })
+
+    ).catch(() => new Map());
+
   }
 
+
   function splitCsvLine(line) {
-    const out = []; let cur = "", q = false;
+
+    const out = [];
+    let cur = "";
+    let q = false;
+
     for (let i = 0; i < line.length; i++) {
+
       const ch = line[i];
+
       if (q) {
+
         if (ch === '"') {
-          if (line[i + 1] === '"') { cur += '"'; i++; }
-          else q = false;
-        } else cur += ch;
+
+          if (line[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            q = false;
+          }
+
+        } else {
+
+          cur += ch;
+
+        }
+
       } else {
-        if (ch === '"') q = true;
-        else if (ch === ",") { out.push(cur); cur = ""; }
-        else cur += ch;
+
+        if (ch === '"') {
+
+          q = true;
+
+        } else if (ch === ",") {
+
+          out.push(cur);
+          cur = "";
+
+        } else {
+
+          cur += ch;
+
+        }
+
       }
+
     }
+
     out.push(cur);
+
     return out;
   }
 
+
   async function importContacts(file) {
+
     const text = await file.text();
-    const lines = text.split(/\r\n|\n|\r/).filter(l => l.trim() !== "");
-    if (!lines.length) throw new Error("empty");
 
-    const head = splitCsvLine(lines[0]).map(h => h.trim().toUpperCase());
-    const ci = head.indexOf("CALLSIGN") >= 0 ? head.indexOf("CALLSIGN") : head.indexOf("CALL");
-    const fi = head.indexOf("FIRST_NAME") >= 0 ? head.indexOf("FIRST_NAME") : head.indexOf("NAME");
-    const li = head.indexOf("LAST_NAME");
+    const lines =
+      text
+        .split(/\r\n|\n|\r/)
+        .filter(l => l.trim() !== "");
 
-    if (ci < 0) throw new Error("nocall");
+    if (!lines.length) {
+      throw new Error("empty");
+    }
+
+    const head =
+      splitCsvLine(lines[0])
+        .map(h => h.trim().toUpperCase());
+
+    const ci =
+      head.indexOf("CALLSIGN") >= 0
+        ? head.indexOf("CALLSIGN")
+        : head.indexOf("CALL");
+
+    const fi =
+      head.indexOf("FIRST_NAME") >= 0
+        ? head.indexOf("FIRST_NAME")
+        : head.indexOf("NAME");
+
+    const li =
+      head.indexOf("LAST_NAME");
+
+    if (ci < 0) {
+      throw new Error("nocall");
+    }
 
     const map = new Map();
+
     for (let i = 1; i < lines.length; i++) {
-      const c = splitCsvLine(lines[i]);
-      const call = (c[ci] || "").trim().toUpperCase();
-      if (!call) continue;
+
+      const c =
+        splitCsvLine(lines[i]);
+
+      const call =
+        (c[ci] || "")
+          .trim()
+          .toUpperCase();
+
+      if (!call) {
+        continue;
+      }
+
       const name = [
+
         fi >= 0 ? c[fi] : "",
+
         li >= 0 ? c[li] : ""
-      ].map(s => (s || "").trim()).filter(Boolean).join(" ");
-      if (name) map.set(call, name);
+
+      ]
+        .map(s => (s || "").trim())
+        .filter(Boolean)
+        .join(" ");
+
+      if (name) {
+        map.set(call, name);
+      }
+
     }
 
     contacts = map;
+
     await idbSaveAll(map);
+
     return map.size;
   }
 
-  const cinfo = document.getElementById("cinfo");
 
-  document.getElementById("ximpc").onclick = () =>
+  const cinfo =
+    document.getElementById("cinfo");
+
+
+  document.getElementById("ximpc").onclick = () => {
+
     document.getElementById("impc").click();
 
-  document.getElementById("impc").onchange = async (e) => {
-    const file = e.target.files[0];
-    e.target.value = "";
-    if (!file) return;
+  };
 
-    cinfo.textContent = "Wczytywanie pliku…";
-    await new Promise(r => setTimeout(r, 30));
 
-    try {
-      const n = await importContacts(file);
-      cinfo.textContent = "Wczytano " + n + " kontaktów (znak → imię).";
+  document.getElementById("impc").onchange =
+    async (e) => {
+
+      const file =
+        e.target.files[0];
+
+      e.target.value = "";
+
+      if (!file) {
+        return;
+      }
+
+      cinfo.textContent =
+        "Wczytywanie pliku…";
+
+      await new Promise(r =>
+        setTimeout(r, 30)
+      );
+
+      try {
+
+        const n =
+          await importContacts(file);
+
+        cinfo.textContent =
+          "Wczytano " +
+          n +
+          " kontaktów (znak → imię).";
+
+        loadData();
+
+      } catch (err) {
+
+        cinfo.textContent =
+          contacts.size
+            ? (
+                "Wczytano " +
+                contacts.size +
+                " kontaktów (znak → imię)."
+              )
+            : "Brak wczytanej listy kontaktów.";
+
+        alert(
+          "Nie udało się wczytać pliku — " +
+          "sprawdź, czy to CSV z kolumną CALLSIGN/CALL."
+        );
+
+      }
+
+    };
+
+
+  document.getElementById("wipec").onclick =
+    async () => {
+
+      if (!confirm(
+        "Na pewno usunąć bazę kontaktów?"
+      )) {
+        return;
+      }
+
+      contacts = new Map();
+
+      try {
+        await idbClear();
+      } catch (e) {}
+
+      cinfo.textContent =
+        "Brak wczytanej listy kontaktów.";
+
       loadData();
-    } catch (err) {
-      cinfo.textContent = contacts.size
-        ? ("Wczytano " + contacts.size + " kontaktów (znak → imię).")
-        : "Brak wczytanej listy kontaktów.";
-      alert("Nie udało się wczytać pliku — sprawdź, czy to CSV z kolumną CALLSIGN/CALL.");
-    }
-  };
 
-  document.getElementById("wipec").onclick = async () => {
-    if (!confirm("Na pewno usunąć bazę kontaktów?")) return;
-    contacts = new Map();
-    try { await idbClear(); } catch (e) {}
-    cinfo.textContent = "Brak wczytanej listy kontaktów.";
-    loadData();
-  };
+    };
+
 
   idbLoadAll().then(m => {
+
     contacts = m;
-    cinfo.textContent = m.size
-      ? ("Wczytano " + m.size + " kontaktów (znak → imię).")
-      : "Brak wczytanej listy kontaktów.";
+
+    cinfo.textContent =
+      m.size
+        ? (
+            "Wczytano " +
+            m.size +
+            " kontaktów (znak → imię)."
+          )
+        : "Brak wczytanej listy kontaktów.";
+
   });
 
+
+  // ⭐ Wyszukiwanie nazwy w bazie kontaktów (SQ5RJA)
   function findName(...vals) {
+
     for (const raw of vals) {
-      if (!raw || raw === "–") continue;
-      const clean = String(raw).trim().toUpperCase();
 
-      if (contacts.has(clean)) return contacts.get(clean);
-
-      const tokens = clean.split(/[^A-Z0-9]+/).filter(Boolean);
-      for (const t of tokens) {
-        if (contacts.has(t)) return contacts.get(t);
+      if (!raw || raw === "–") {
+        continue;
       }
+
+      const clean =
+        String(raw)
+          .trim()
+          .toUpperCase();
+
+      if (contacts.has(clean)) {
+        return contacts.get(clean);
+      }
+
+      const tokens =
+        clean
+          .split(/[^A-Z0-9]+/)
+          .filter(Boolean);
+
+      for (const t of tokens) {
+
+        if (contacts.has(t)) {
+          return contacts.get(t);
+        }
+
+      }
+
     }
+
     return null;
   }
 
-  // ⭐ Odświeżanie mapy
-  function refreshMap() {
-    const img = document.getElementById("mapImage");
-    img.src = "https://stats.allstarlink.org/stats/66881/networkMap?ts=" + Date.now();
+
+  // Przemiennik (SQ5RJA)
+  // Znak zaczynający się od SR1–SR9.
+  //
+  // Przykłady:
+  // SR5XYZ     → Przemiennik
+  // SR1A       → Przemiennik
+  // SR7ABC-L   → Przemiennik
+  //
+  // Funkcja obsługuje również znaki znajdujące się
+  // w ciągu zawierającym separatory.
+
+  function isRepeater(call) {
+
+    const tokens =
+      String(call)
+        .trim()
+        .toUpperCase()
+        .split(/[^A-Z0-9]+/)
+        .filter(Boolean);
+
+    return tokens.some(
+      t => /^SR[1-9]/.test(t)
+    );
+
   }
 
-  // ⭐ Pobieranie danych z API AllStarLink — 66881, 65318 oraz 622155
+
+  // ⭐ Pobieranie danych z API AllStarLink
+  // 66881, 65318 oraz 622155
+
   const nodes = [
-    { url: "https://stats.allstarlink.org/api/stats/66881", id: 66881 },
-    { url: "https://stats.allstarlink.org/api/stats/65318", id: 65318 },
-    { url: "https://stats.allstarlink.org/api/stats/622155", id: 622155 }
+
+    {
+      url: "https://stats.allstarlink.org/api/stats/66881",
+      id: 66881
+    },
+
+    {
+      url: "https://stats.allstarlink.org/api/stats/65318",
+      id: 65318
+    },
+
+    {
+      url: "https://stats.allstarlink.org/api/stats/622155",
+      id: 622155
+    }
+
   ];
 
-  const tbodyUsers = document.querySelector("#users tbody");
+
+  const tbodyUsers =
+    document.querySelector("#users tbody");
+
 
   async function loadData() {
+
     const allEntries = [];
 
+
     for (const node of nodes) {
+
       try {
-        const res = await fetch(node.url);
-        const data = await res.json();
-        const linked = data?.stats?.data?.linkedNodes || [];
+
+        const res =
+          await fetch(node.url);
+
+        const data =
+          await res.json();
+
+        const linked =
+          data?.stats?.data?.linkedNodes || [];
+
 
         linked.forEach(entry => {
-          const userId = entry.User_ID ?? "–";
-          const name = entry.name ?? "–";
-          const location = entry.server?.Location ?? "–";
+
+          const userId =
+            entry.User_ID ?? "–";
+
+          const name =
+            entry.name ?? "–";
+
+          const location =
+            entry.server?.Location ?? "–";
+
 
           allEntries.push({
+
             userId,
             name,
             location,
             node: node.id
+
           });
+
         });
+
+
       } catch (err) {
-        console.error("Błąd pobierania danych:", err);
+
+        console.error(
+          "Błąd pobierania danych:",
+          err
+        );
+
       }
+
     }
+
+
+    // ⭐ Sortowanie po znaku / User_ID
 
     allEntries.sort((a, b) =>
       String(a.userId).localeCompare(
         String(b.userId),
         undefined,
-        { numeric: true }
+        {
+          numeric: true
+        }
       )
     );
 
+
     tbodyUsers.innerHTML = "";
-    let matched = 0, totalUsers = 0;
+
+
+    let matched = 0;
+    let totalUsers = 0;
+
+
+    // ⭐ Grupowanie tych samych znaków
 
     const groups = {};
+
+
     allEntries.forEach(item => {
-      if (!groups[item.userId]) groups[item.userId] = [];
+
+      if (!groups[item.userId]) {
+        groups[item.userId] = [];
+      }
+
       groups[item.userId].push(item);
+
     });
 
+
+    // ⭐ Budowanie tabeli
+
     for (const userId in groups) {
-      const rows = groups[userId];
-      const rowspan = rows.length;
+
+      const rows =
+        groups[userId];
+
+      const rowspan =
+        rows.length;
+
       totalUsers++;
 
+
       rows.forEach((item, index) => {
-        const tr = document.createElement("tr");
+
+        const tr =
+          document.createElement("tr");
+
+
+        // ⭐ Znak + Imię
 
         if (index === 0) {
-          const tdUser = document.createElement("td");
-          tdUser.rowSpan = rowspan;
 
-          const tdImie = document.createElement("td");
-          tdImie.rowSpan = rowspan;
+          const tdUser =
+            document.createElement("td");
+
+          tdUser.rowSpan =
+            rowspan;
+
+
+          const tdImie =
+            document.createElement("td");
+
+          tdImie.rowSpan =
+            rowspan;
+
 
           if (userId !== "–") {
-            const a = document.createElement("a");
-            a.href = "https://www.qrz.com/db/" + encodeURIComponent(userId);
-            a.target = "_blank";
-            a.rel = "noopener";
-            a.textContent = userId;
+
+            // 🔗 Link do QRZ
+
+            const a =
+              document.createElement("a");
+
+            a.href =
+              "https://www.qrz.com/db/" +
+              encodeURIComponent(userId);
+
+            a.target =
+              "_blank";
+
+            a.rel =
+              "noopener";
+
+            a.textContent =
+              userId;
+
             tdUser.appendChild(a);
 
-            const cname = findName(userId, item.name);
-            if (cname) matched++;
-            tdImie.textContent = cname || "–";
+
+            // 📡 Sprawdzenie, czy znak jest przemiennikiem
+
+            if (isRepeater(userId)) {
+
+              tdImie.textContent =
+                "Przemiennik";
+
+            } else {
+
+              const cname =
+                findName(
+                  userId,
+                  item.name
+                );
+
+              if (cname) {
+                matched++;
+              }
+
+              tdImie.textContent =
+                cname || "–";
+
+            }
+
+
           } else {
-            tdUser.textContent = "–";
-            tdImie.textContent = "–";
+
+            tdUser.textContent =
+              "–";
+
+            tdImie.textContent =
+              "–";
+
           }
+
 
           tr.appendChild(tdUser);
           tr.appendChild(tdImie);
+
         }
 
-        const tdName = document.createElement("td");
-        tdName.textContent = item.name;
 
-        const tdLocation = document.createElement("td");
-        tdLocation.textContent = item.location;
+        // ⭐ Nazwa z API
 
-        const tdNode = document.createElement("td");
-        tdNode.textContent = item.node;
+        const tdName =
+          document.createElement("td");
+
+        tdName.textContent =
+          item.name;
+
+
+        // ⭐ Lokalizacja
+
+        const tdLocation =
+          document.createElement("td");
+
+        tdLocation.textContent =
+          item.location;
+
+
+        // ⭐ Numer węzła
+
+        const tdNode =
+          document.createElement("td");
+
+        tdNode.textContent =
+          item.node;
+
 
         tr.appendChild(tdName);
         tr.appendChild(tdLocation);
         tr.appendChild(tdNode);
 
+
+        // ⭐ APRS
+
         if (index === 0) {
-          const tdAprs = document.createElement("td");
-          tdAprs.rowSpan = rowspan;
+
+          const tdAprs =
+            document.createElement("td");
+
+          tdAprs.rowSpan =
+            rowspan;
+
 
           if (userId !== "–") {
-            const sat = document.createElement("img");
-            sat.src = "https://ref032.dstar.radom.pl/img/sat.png";
-            sat.className = "aprs-icon";
-            sat.title = "APRS.fi";
-            sat.alt = "APRS.fi";
+
+            const sat =
+              document.createElement("img");
+
+            sat.src =
+              "https://ref032.dstar.radom.pl/img/sat.png";
+
+            sat.className =
+              "aprs-icon";
+
+            sat.title =
+              "APRS.fi";
+
+            sat.alt =
+              "APRS.fi";
+
+
             sat.onclick = () => {
+
               window.open(
-                "https://aprs.fi/" + encodeURIComponent(userId),
+
+                "https://aprs.fi/" +
+                encodeURIComponent(userId),
+
                 "_blank",
+
                 "noopener"
+
               );
+
             };
+
+
             tdAprs.appendChild(sat);
+
+
           } else {
-            tdAprs.textContent = "–";
+
+            tdAprs.textContent =
+              "–";
+
           }
 
+
           tr.appendChild(tdAprs);
+
         }
 
+
         tbodyUsers.appendChild(tr);
+
       });
+
     }
+
+
+    // ⭐ Informacja o bazie kontaktów
 
     if (contacts.size) {
+
       cinfo.textContent =
-        "Wczytano " + contacts.size +
+        "Wczytano " +
+        contacts.size +
         " kontaktów (znak → imię) — dopasowano " +
-        matched + " z " + totalUsers +
+        matched +
+        " z " +
+        totalUsers +
         " widocznych znaków.";
+
     }
+
   }
 
+
+  // ⭐ Pierwsze ładowanie
+
   loadData();
+
   refreshMap();
 
+
+  // ⭐ Automatyczne odświeżanie co 60 sekund
+
   setInterval(() => {
+
     loadData();
     refreshMap();
+
   }, 60000);
 
 </script>
